@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- 1. General Setup ---
     const header = document.querySelector('.header');
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
@@ -8,72 +9,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabLinks = document.querySelectorAll('.tab-link');
     const menuContents = document.querySelectorAll('.menu-content');
 
-    // 1. Header background on scroll
-    const handleScroll = () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    };
+    // --- 2. Header and Navigation Logic ---
+    if (header) {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+    }
 
-    // 2. Mobile navigation toggle
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
 
-    // 3. Close mobile menu when a link is clicked
     navLinks.forEach(link => link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
+        if (hamburger) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
     }));
-    
-    // 4. Menu tabs functionality
+
+    // --- 3. Homepage Menu Tabs Logic ---
     tabLinks.forEach(tab => {
         tab.addEventListener('click', () => {
             tabLinks.forEach(item => item.classList.remove('active'));
             menuContents.forEach(item => item.classList.remove('active'));
-            
+
             const target = document.querySelector(`#${tab.dataset.tab}`);
             tab.classList.add('active');
-            target.classList.add('active');
+            if (target) {
+                target.classList.add('active');
+            }
         });
     });
 
-    // 5. Active navigation link on scroll
-    const updateActiveNavLink = () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - (section.clientHeight / 3)) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').includes(current)) {
-                link.classList.add('active');
-            }
-        });
-    };
-    
-    // Attach scroll listeners
-    window.addEventListener('scroll', () => {
-        handleScroll();
-        updateActiveNavLink();
-    });
-
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-
-    // (Keep all your existing code for header, mobile nav, etc. here)
-
-    // ... existing code ...
-
-    // NEW CODE: Menu filtering functionality
+    // --- 4. Menu Page Filtering Logic ---
     const filterContainer = document.querySelector('.menu-filters');
     if (filterContainer) {
         const filterButtons = filterContainer.querySelectorAll('.filter-btn');
@@ -88,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 menuItems.forEach(item => {
                     if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                        item.style.display = 'flex'; // Use 'flex' to match the card's display property
+                        item.style.display = 'flex';
                     } else {
                         item.style.display = 'none';
                     }
@@ -96,5 +72,28 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // --- 5. Add to Cart Logic ---
+    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.dataset.id;
+            const name = button.dataset.name;
+            const price = parseFloat(button.dataset.price);
+            const image = button.closest('.menu-item-card').querySelector('img').src;
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let itemInCart = cart.find(item => item.id === id);
+
+            if (itemInCart) {
+                itemInCart.quantity++;
+            } else {
+                cart.push({ id, name, price, image, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${name} has been added to your order!`);
+        });
+    });
 
 });
