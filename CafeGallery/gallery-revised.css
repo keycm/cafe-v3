@@ -1,0 +1,329 @@
+/* --- STYLES FOR REVISED GALLERY PAGE --- */
+
+:root {
+    --gallery-bg: #f4f1eb;
+    --gallery-text: #333;
+    --gallery-btn-bg: rgba(240, 240, 240, 0.8);
+    --gallery-btn-hover: #fff;
+}
+
+body {
+    background-color: var(--gallery-bg);
+}
+
+/* --- Header Override --- */
+.gallery-header.header-page {
+    background: rgba(244, 241, 235, 0.8); /* Match page background */
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #ddd;
+}
+.gallery-header .nav-logo,
+.gallery-header .nav-link {
+    color: var(--gallery-text); /* Dark text for light header */
+}
+.gallery-header .nav-link:hover,
+.gallery-header .nav-link.active {
+    color: var(--primary-color);
+}
+.gallery-header .bar {
+    background-color: var(--gallery-text);
+}
+.gallery-header .nav-button {
+    background-color: #A0522D; /* Sienna color */
+    color: white;
+}
+.gallery-header .nav-button:hover {
+    background-color: #8B4513;
+}
+
+
+/* --- Main Content --- */
+.gallery-main {
+    padding-top: var(--nav-height);
+}
+
+/* --- Section 1: Featured Artist --- */
+.featured-artist-section {
+    display: flex;
+    height: calc(100vh - var(--nav-height));
+    background: var(--gallery-bg);
+    border-bottom: 1px solid #ddd;
+}
+
+.featured-artist-content {
+    flex-basis: 45%;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid #ddd;
+}
+
+.artist-info {
+    display: flex;
+    gap: 2rem;
+}
+
+.artwork-preview {
+    text-align: center;
+}
+
+.artwork-location {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    color: #888;
+    margin-bottom: 1rem;
+}
+
+.artwork-preview img {
+    width: 120px;
+    height: auto;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.artist-details {
+    padding-top: 3rem;
+}
+
+.artist-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--gallery-text);
+    line-height: 1.2;
+}
+
+.artist-medium {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+.view-more-container {
+    text-align: center;
+    padding-bottom: 2rem;
+}
+
+.view-more-link {
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
+    color: #888;
+    letter-spacing: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s;
+}
+.view-more-link:hover { color: var(--gallery-text); }
+
+.featured-artwork {
+    flex-basis: 55%;
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-artwork img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.next-button {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    color: var(--gallery-text);
+    font-weight: bold;
+    border: 1px solid #ccc;
+    transition: background 0.3s;
+}
+.next-button:hover { background: #fff; }
+
+/* --- Sections 2 & 3: Full-width Artwork --- */
+.full-width-artwork {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 3rem;
+    position: relative;
+}
+
+.artwork-one { background-image: url('https://images.pexels.com/photos/349749/pexels-photo-349749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); }
+.artwork-two { background-image: url('https://images.pexels.com/photos/164531/pexels-photo-164531.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); }
+
+.artwork-overlay {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.artwork-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.artwork-btn {
+    background: var(--gallery-btn-bg);
+    color: var(--gallery-text);
+    border: 1px solid #ccc;
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    backdrop-filter: blur(5px);
+    transition: background-color 0.3s;
+}
+.artwork-btn:hover { background-color: var(--gallery-btn-hover); }
+
+.slider-dots {
+    display: flex;
+    gap: 10px;
+}
+.slider-dots span {
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    border: 1px solid #aaa;
+}
+.slider-dots span.active {
+    background: #fff;
+    width: 40px;
+    border-radius: 10px;
+}
+
+/* --- Section 4: Category Grid --- */
+.category-grid-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 60vh);
+}
+
+.grid-item {
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: white;
+}
+
+.grid-item::before { /* Dark overlay for text readability */
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.3);
+}
+
+#photography { background-image: url('https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); }
+#prints { background-image: url('https://images.pexels.com/photos/1037993/pexels-photo-1037993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-color: #333;}
+#drawings { background-image: url('https://images.pexels.com/photos/145707/pexels-photo-145707.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); }
+#advisory { background-image: url('https://images.pexels.com/photos/3184234/pexels-photo-3184234.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); }
+
+.grid-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+.grid-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+.grid-btn {
+    background: var(--gallery-btn-bg);
+    color: var(--gallery-text);
+    border: 1px solid #ccc;
+    padding: 10px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    backdrop-filter: blur(5px);
+    transition: background-color 0.3s;
+    margin: 0 0.5rem;
+}
+.grid-btn:hover { background-color: var(--gallery-btn-hover); }
+
+.grid-btn.learn-more {
+    background: transparent;
+    border-color: white;
+    color: white;
+}
+.grid-btn.learn-more:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Footer Override --- */
+.gallery-footer {
+    background-color: #222;
+    color: #ccc;
+    padding: 3rem 0;
+}
+.gallery-footer .footer-logo,
+.gallery-footer h4 {
+    color: white;
+}
+.gallery-footer p,
+.gallery-footer a {
+    color: #aaa;
+}
+.gallery-footer a:hover {
+    color: white;
+}
+.gallery-footer .footer-grid {
+    border: none;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .featured-artist-section {
+        flex-direction: column;
+        height: auto;
+    }
+    .featured-artwork {
+        height: 50vh;
+    }
+    .artist-name {
+        font-size: 2.5rem;
+    }
+    .category-grid-section {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 50vh);
+    }
+}
+
+@media (max-width: 768px) {
+    .artist-info {
+        flex-direction: column;
+        text-align: center;
+    }
+    .artwork-preview { margin-bottom: 2rem; }
+    .featured-artist-content { padding: 2rem; }
+    .full-width-artwork {
+        justify-content: center;
+    }
+    .artwork-overlay {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .slider-dots {
+        position: absolute;
+        bottom: 1rem;
+    }
+}

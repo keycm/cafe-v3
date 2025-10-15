@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Menu - Cafe Emmanuel</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Archivo+Black&family=Archivo+Narrow:wght@400;700&family=Birthstone+Bounce:wght@500&family=Inknut+Antiqua:wght@600&family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="header header-page"> 
+        <nav class="navbar container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-cafe"><span class="first-letter">C</span>AFE</span>
+                <span class="logo-emmanuel"><span class="first-letter">E</span>mmanuel</span>
+            </a>
+            <ul class="nav-menu">
+                 <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="menu.html" class="nav-link active">Menu</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <a href="#" class="nav-button">Sign In / Sign Up</a>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="menu-page-section">
+            <div class="container">
+                <h2 class="section-title">Our Menu</h2>
+                <p class="section-subtitle">Discover our carefully curated selection of artisanal coffee, fresh food, and delicious treats.</p>
+                
+                <div class="menu-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="burger">Burger</button>
+                    <button class="filter-btn" data-filter="pizza">Pizza</button>
+                    <button class="filter-btn" data-filter="pasta">Pasta</button>
+                    <button class="filter-btn" data-filter="coffee">Coffee & Drinks</button>
+                    <button class="filter-btn" data-filter="dessert">Desserts</button>
+                </div>
+
+                <div class="menu-grid">
+                    <div class="menu-item-card" data-category="coffee">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1517701559416-3e568440b979?q=80&w=600" alt="Iced Latte">
+                        </div>
+                        <div class="card-info-overlay">
+                            <h3>Iced Latte</h3>
+                            <p>Chilled espresso with steamed milk, a refreshing classic.</p>
+                            <a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                    <div class="menu-item-card" data-category="burger">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=600" alt="Classic Burger">
+                        </div>
+                        <div class="card-info-overlay">
+                            <h3>Classic Burger</h3>
+                            <p>Juicy beef patty with fresh lettuce, tomato, and our secret sauce.</p>
+                            <a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                    <div class="menu-item-card" data-category="dessert">
+                        <div class="card-img-wrapper">
+                             <img src="https://images.unsplash.com/photo-1567172352192-a1b7a264a1d4?q=80&w=600" alt="Chocolate Brownie">
+                        </div>
+                        <div class="card-info-overlay">
+                            <h3>Fudge Brownie</h3>
+                            <p>Warm, gooey chocolate brownie served with a scoop of vanilla ice cream.</p>
+                            <a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                    <div class="menu-item-card" data-category="pizza">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=80&w=600" alt="Pepperoni Pizza">
+                        </div>
+                        <div class="card-info-overlay">
+                            <h3>Pepperoni Pizza</h3>
+                            <p>Classic hand-tossed pizza with rich tomato sauce and pepperoni.</p>
+                            <a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                    <div class="menu-item-card" data-category="pasta">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1598866594240-a733730ab285?q=80&w=600" alt="Spaghetti Bolognese">
+                        </div>
+                        <div class="card-info-overlay">
+                            <h3>Spaghetti Bolognese</h3>
+                            <p>A timeless Italian dish with a rich, slow-cooked meat sauce.</p>
+                            <a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                    <div class="menu-item-card" data-category="coffee">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=600" alt="Cappuccino">
+                        </div>
+                        <div class="card-info-overlay">
+                            <h3>Hot Cappuccino</h3>
+                            <p>Rich espresso with a deep layer of foamed milk.</p>
+                            <a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="new-footer"> <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h4 class="footer-logo">Cafe Emmanuel</h4>
+                    <p>Your neighborhood destination for exceptional coffee, delicious food, and warm hospitality. Where every cup tells a story.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Info</h4>
+                    <p>123 Coffee Street</p>
+                    <p>Downtown District, City 12345</p>
+                    <p>(555) 123-CAFE</p>
+                    <p>hello@cafeemmanuel.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Cafe Emmanuel. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
