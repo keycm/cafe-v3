@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Order - Cafe Emmanuel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .order-section {
+            padding-top: calc(var(--nav-height) + 4rem);
+            padding-bottom: 6rem;
+            background-color: #fcfbf8;
+        }
+        .order-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        .basket-items {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .basket-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .basket-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .basket-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 1.5rem;
+        }
+        .item-details {
+            flex-grow: 1;
+        }
+        .item-details h3 {
+            font-family: var(--font-section-heading);
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+        .quantity-btn {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .item-price {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .order-summary {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            position: sticky;
+            top: calc(var(--nav-height) + 2rem);
+        }
+        .order-summary h2 {
+            font-family: var(--font-section-heading);
+            margin-bottom: 1.5rem;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        .summary-total {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        .checkout-btn:hover {
+            background-color: #a14436;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header header-page">
+        <nav class="navbar container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-cafe"><span class="first-letter">C</span>AFE</span>
+                <span class="logo-emmanuel"><span class="first-letter">E</span>mmanuel</span>
+            </a>
+            <ul class="nav-menu">
+                 <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="menu.html" class="nav-link">Menu</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <a href="order.html" class="nav-button">My Order</a>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="order-section">
+            <div class="container order-container">
+                <div class="basket-items" id="basket-items">
+                    <h2>Your Basket</h2>
+                    </div>
+                <div class="order-summary" id="order-summary">
+                    <h2>Order Summary</h2>
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal-price">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery Fee</span>
+                        <span>$5.00</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total</span>
+                        <span id="total-price">$5.00</span>
+                    </div>
+                    <button class="checkout-btn">Proceed to Checkout</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="new-footer">
+        </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const basketItemsContainer = document.getElementById('basket-items');
+            const subtotalPriceEl = document.getElementById('subtotal-price');
+            const totalPriceEl = document.getElementById('total-price');
+            const deliveryFee = 5.00;
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            function updateCart() {
+                localStorage.setItem('cart', JSON.stringify(cart));
+                renderCartItems();
+                updateOrderSummary();
+            }
+
+            function renderCartItems() {
+                basketItemsContainer.innerHTML = '<h2>Your Basket</h2>';
+                if (cart.length === 0) {
+                    basketItemsContainer.innerHTML += '<p>Your basket is empty.</p>';
+                    return;
+                }
+
+                cart.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.classList.add('basket-item');
+                    itemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="item-details">
+                            <h3>${item.name}</h3>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" data-id="${item.id}" data-action="decrease">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="quantity-btn" data-id="${item.id}" data-action="increase">+</button>
+                            </div>
+                        </div>
+                        <span class="item-price">$${(item.price * item.quantity).toFixed(2)}</span>
+                    `;
+                    basketItemsContainer.appendChild(itemElement);
+                });
+            }
+
+            function updateOrderSummary() {
+                const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+                subtotalPriceEl.textContent = \`$\${subtotal.toFixed(2)}\`;
+                totalPriceEl.textContent = \`$\${(subtotal + deliveryFee).toFixed(2)}\`;
+            }
+
+            basketItemsContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('quantity-btn')) {
+                    const id = e.target.dataset.id;
+                    const action = e.target.dataset.action;
+                    const item = cart.find(cartItem => cartItem.id === id);
+
+                    if (item) {
+                        if (action === 'increase') {
+                            item.quantity++;
+                        } else if (action === 'decrease') {
+                            item.quantity--;
+                            if (item.quantity === 0) {
+                                cart = cart.filter(cartItem => cartItem.id !== id);
+                            }
+                        }
+                        updateCart();
+                    }
+                }
+            });
+
+            renderCartItems();
+            updateOrderSummary();
+        });
+    </script>
+</body>
+</html>
